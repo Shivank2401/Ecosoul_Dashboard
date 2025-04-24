@@ -15,12 +15,10 @@ st.set_page_config(
 )
 
 # 🔐 Hardcoded credentials: username, password, role
-USERS = {
-    "admin": {"password": "admin1234", "role": "admin"},
-    "priyanka": {"password": "Ecosoul123", "role": "inventory"},
-    "mohak": {"password": "Mohak321", "role": "retail"},
-    "sumit": {"password": "Sumit123", "role": "zoho"}
-}
+USERS = {"admin": {"password": "admin1234", "role": "admin"},
+         "priyanka": {"password": "Ecosoul123", "role": "inventory"},
+         "mohak": {"password": "Mohak321", "role": "retail"},
+         "sumit": {"password": "Sumit123", "role": "zoho"} }
 
 def check_password():
     """Multi-user authentication check"""
@@ -37,12 +35,13 @@ def check_password():
                 st.session_state.logged_in = True
                 st.session_state.username = username
                 st.session_state.role = USERS[username]["role"]
-                st.success(f"Welcome, {username}!")
-                st.rerun()
+                st.rerun()  # Rerun immediately, don't render anything more in this block
             else:
                 st.error("Invalid username or password.")
         return False
-    return True
+    else:
+        st.sidebar.success(f"Welcome, {st.session_state.username}!")
+        return True
 
 # 🔒 Block access until login is successful
 if not check_password():
