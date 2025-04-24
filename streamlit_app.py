@@ -35,13 +35,11 @@ def check_password():
                 st.session_state.logged_in = True
                 st.session_state.username = username
                 st.session_state.role = USERS[username]["role"]
-                st.rerun()  # Rerun immediately, don't render anything more in this block
+                st.rerun()
             else:
                 st.error("Invalid username or password.")
         return False
-    else:
-        st.sidebar.success(f"Welcome, {st.session_state.username}!")
-        return True
+    return True
 
 # 🔒 Block access until login is successful
 if not check_password():
