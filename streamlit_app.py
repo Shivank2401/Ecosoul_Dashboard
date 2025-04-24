@@ -42,6 +42,10 @@ def check_password():
                 st.error("Invalid username or password.")
         return False
     return True
+    
+# 🔒 Block access until login is successful
+if not check_password():
+    st.stop()
 
 # Sidebar Navigation with Custom Buttons and Icons
 def main_dashboard():
