@@ -65,12 +65,7 @@ def main_dashboard():
                 "container": {"padding": "0!important", "background-color": "#000f0c"}, # 00624E 071D3B 000f0c
                 "icon": {"color": "white", "font-size": "20px"}, 
                 "nav-link": {"font-size": "16px", "text-align": "left", "margin": "0px", "--hover-color": "#F4877A"},
-                "nav-link-selected": {"background-color": "#00624E"}, } )
-        
-        # Spacer to push logout to bottom
-        st.markdown("<br><br><br><br><br><br><br><br><br><br>", unsafe_allow_html=True)
-        st.button("👋 Logout", on_click=logout)
-        
+                "nav-link-selected": {"background-color": "#00624E"}, } )        
     
     #------------------------------------------------------------------------------------------ Load data
     # Base raw GitHub URL
