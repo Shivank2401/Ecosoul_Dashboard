@@ -1807,20 +1807,19 @@ def main_dashboard():
             st.markdown("Social Media Insights")
 
 def logout():
-    """Log the user out"""
-    for key in ["logged_in", "username", "role"]:
-        if key in st.session_state:
-            del st.session_state[key]
-    st.rerun()
-       
+    st.session_state.logged_in = False
+    st.session_state.username = ""
+    st.session_state.role = ""
+    
 def main():
     if not check_password():
         return
 
-    st.sidebar.markdown(f"✅ Logged in as **{st.session_state.username}** ({st.session_state.role})")
-    st.sidebar.button("👋 Logout", on_click=logout)
-
     main_dashboard()
+
+    if st.sidebar.button("👋 Logout"):
+        logout()
+        st.rerun()
 
 if __name__ == "__main__":
     main()
