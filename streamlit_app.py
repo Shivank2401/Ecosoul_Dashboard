@@ -46,7 +46,11 @@ def check_password():
 # Sidebar Navigation with Custom Buttons and Icons
 def main_dashboard():
     with st.sidebar:
+        # Display welcome message inside main panel
+        st.success(f"Welcome, **{st.session_state.username}**! 🎉 `{st.session_state.role}`.")
         st.markdown("## Ecosoul: A Holistic View of Business")
+        
+        #  Sidebar navigation
         main_page = option_menu(
             "Main Menu", 
             ["Main", "Inventory", "Retail", "Quick Commerce", "Zoho",'Digital Marketing'],
@@ -59,8 +63,10 @@ def main_dashboard():
                 "nav-link": {"font-size": "16px", "text-align": "left", "margin": "0px", "--hover-color": "#F4877A"},
                 "nav-link-selected": {"background-color": "#00624E"}, } )
         
-    # Display welcome message inside main panel
-    st.success(f"Welcome, **{st.session_state.username}**! 🎉 Your role is `{st.session_state.role}`.")
+        # Spacer to push logout to bottom
+        st.markdown("<br><br><br><br><br><br><br><br><br><br>", unsafe_allow_html=True)
+        st.button("👋 Logout", on_click=logout)
+        
     
     #------------------------------------------------------------------------------------------ Load data
     # Base raw GitHub URL
