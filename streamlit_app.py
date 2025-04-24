@@ -14,28 +14,39 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Security Configuration
-VALID_PASSWORD = "admin123"  # Change this for production
+# 🔐 Hardcoded credentials: username, password, role
+USERS = {
+    "admin": {"password": "admin1234", "role": "admin"},
+    "priyanka": {"password": "Ecosoul123", "role": "inventory"},
+    "mohak": {"password": "Mohak321", "role": "retail"},
+    "sumit": {"password": "Sumit123", "role": "zoho"}
+}
 
 def check_password():
-    """Authentication Check"""
-    if "password_correct" not in st.session_state:
-        st.session_state.password_correct = False
+    """Multi-user authentication check"""
+    if "logged_in" not in st.session_state:
+        st.session_state.logged_in = False
 
-    if not st.session_state.password_correct:
-        password = st.text_input("Welcome! Please Enter PASSWORD 🔒:", type="password")
+    if not st.session_state.logged_in:
+        st.title("🔐 Welcome! Please Login")
+        username = st.text_input("Username")
+        password = st.text_input("Password", type="password")
+
         if st.button("Login"):
-            if password == VALID_PASSWORD:
-                st.session_state.password_correct = True
-                st.rerun()   # Refresh the page after successful login
+            if username in USERS and USERS[username]["password"] == password:
+                st.session_state.logged_in = True
+                st.session_state.username = username
+                st.session_state.role = USERS[username]["role"]
+                st.success(f"Welcome, {username}!")
+                st.rerun()
             else:
-                st.error("Incorrect password. Please try again.")
+                st.error("Invalid username or password.")
         return False
     return True
 
-# ✅ Show login page first
+# 🔒 Block access until login is successful
 if not check_password():
-    st.stop()  # Stop execution if not logged in
+    st.stop()
 
 alt.theme.enable("dark") # Set the theme for Altair plots
 
