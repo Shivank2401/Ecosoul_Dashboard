@@ -1805,15 +1805,20 @@ def main_dashboard():
 
        
 def logout():
-    st.session_state.password_correct = False
-    st.session_state.password = ""
+    st.session_state.logged_in = False
+    st.session_state.username = ""
+    st.session_state.role = ""
+
  
 def main():
     if not check_password():
         return
-   
+
     main_dashboard()
-    st.sidebar.button("👋 Logout", on_click=logout)
+
+    if st.sidebar.button("👋 Logout"):
+        logout()
+        st.rerun()
  
 if __name__ == "__main__":
     main()
