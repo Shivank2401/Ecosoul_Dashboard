@@ -42,10 +42,16 @@ def check_password():
     return True
 
 # 🔒 Block access until login is successful
-if not check_password():
-    st.stop()
+def main():
+    if not check_password():
+        return
 
-alt.theme.enable("dark") # Set the theme for Altair plots
+    # Show after successful login
+    st.sidebar.markdown(f"✅ Logged in as **{st.session_state.username}** ({st.session_state.role})")
+    st.sidebar.button("👋 Logout", on_click=logout)
+
+    # Run main dashboard (only after login)
+    main_dashboard()
 
 # Sidebar Navigation with Custom Buttons and Icons
 def main_dashboard():
