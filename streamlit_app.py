@@ -17,7 +17,7 @@ st.set_page_config(
 # 🔐 Hardcoded credentials: username, password, role
 USERS = {
     "admin": {"password": "admin1234", "role": "admin"},
-    "Priyanka": {"password": "Ecosoul123", "role": "inventory"},
+    "Priyanka": {"password": "Ecosoul123", "role": "admin"},
     "Mohak": {"password": "Mohak321", "role": "retail"},
     "Sumit": {"password": "Sumit123", "role": "zoho"}
 }
@@ -42,14 +42,6 @@ def check_password():
                 st.error("Invalid username or password.")
         return False
     return True
-
-def logout():
-    """Log the user out"""
-    for key in ["logged_in", "username", "role"]:
-        if key in st.session_state:
-            del st.session_state[key]
-    st.rerun()
-
 
 # Sidebar Navigation with Custom Buttons and Icons
 def main_dashboard():
@@ -1808,6 +1800,12 @@ def main_dashboard():
             st.subheader("Social Media 🤳")
             st.markdown("Social Media Insights")
 
+def logout():
+    """Log the user out"""
+    for key in ["logged_in", "username", "role"]:
+        if key in st.session_state:
+            del st.session_state[key]
+    st.rerun()
        
 def main():
     if not check_password():
