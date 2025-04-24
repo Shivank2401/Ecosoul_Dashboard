@@ -16,10 +16,10 @@ st.set_page_config(
 
 # 🔐 Hardcoded credentials: username, password, role
 USERS = {
-    "admin": {"password": "admin1234", "role": "admin"},
-    "Priyanka": {"password": "Ecosoul123", "role": "admin"},
-    "Mohak": {"password": "Mohak321", "role": "retail"},
-    "Sumit": {"password": "Sumit123", "role": "zoho"}
+    "admin": {"password": "admin1234", "role": "Admin"},
+    "Priyanka": {"password": "Ecosoul123", "role": "Admin"},
+    "Mohak": {"password": "Mohak321", "role": "Retail"},
+    "Sumit": {"password": "Sumit123", "role": "Supply Chain"}
 }
 
 def check_password():
