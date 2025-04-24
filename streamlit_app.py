@@ -15,10 +15,12 @@ st.set_page_config(
 )
 
 # 🔐 Hardcoded credentials: username, password, role
-USERS = {"admin": {"password": "admin1234", "role": "admin"},
-         "Priyanka": {"password": "Ecosoul123", "role": "inventory"},
-         "Mohak": {"password": "Mohak321", "role": "retail"},
-         "Sumit": {"password": "Sumit123", "role": "zoho"} }
+USERS = {
+    "admin": {"password": "admin1234", "role": "admin"},
+    "Priyanka": {"password": "Ecosoul123", "role": "inventory"},
+    "Mohak": {"password": "Mohak321", "role": "retail"},
+    "Sumit": {"password": "Sumit123", "role": "zoho"}
+}
 
 def check_password():
     """Multi-user authentication check"""
@@ -41,17 +43,13 @@ def check_password():
         return False
     return True
 
-# 🔒 Block access until login is successful
-def main():
-    if not check_password():
-        return
+def logout():
+    """Log the user out"""
+    for key in ["logged_in", "username", "role"]:
+        if key in st.session_state:
+            del st.session_state[key]
+    st.rerun()
 
-    # Show after successful login
-    st.sidebar.markdown(f"✅ Logged in as **{st.session_state.username}** ({st.session_state.role})")
-    st.sidebar.button("👋 Logout", on_click=logout)
-
-    # Run main dashboard (only after login)
-    main_dashboard()
 
 # Sidebar Navigation with Custom Buttons and Icons
 def main_dashboard():
@@ -68,7 +66,11 @@ def main_dashboard():
                 "icon": {"color": "white", "font-size": "20px"}, 
                 "nav-link": {"font-size": "16px", "text-align": "left", "margin": "0px", "--hover-color": "#F4877A"},
                 "nav-link-selected": {"background-color": "#00624E"}, } )
-    # Load data
+        
+    # Display welcome message inside main panel
+    st.success(f"Welcome, **{st.session_state.username}**! 🎉 Your role is `{st.session_state.role}`.")
+    
+    #------------------------------------------------------------------------------------------ Load data
     # Base raw GitHub URL
     base_url = "https://raw.githubusercontent.com/Shivank2401/Ecosoul_Dashboard/main/data/"
     
@@ -1807,21 +1809,14 @@ def main_dashboard():
             st.markdown("Social Media Insights")
 
        
-def logout():
-    st.session_state.logged_in = False
-    st.session_state.username = ""
-    st.session_state.role = ""
-
- 
 def main():
     if not check_password():
         return
 
+    st.sidebar.markdown(f"✅ Logged in as **{st.session_state.username}** ({st.session_state.role})")
+    st.sidebar.button("👋 Logout", on_click=logout)
+
     main_dashboard()
 
-    if st.sidebar.button("👋 Logout"):
-        logout()
-        st.rerun()
- 
 if __name__ == "__main__":
     main()
