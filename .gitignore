@@ -10,3 +10,7 @@ Config.toml
 # the config files used for testing, Uncomment the following line if you want to commit the test config files
 #!**/tests/Config.toml
 .streamlit/secrets.toml
+
+# .streamlit/secrets.toml
+
+GITHUB_TOKEN = "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"
