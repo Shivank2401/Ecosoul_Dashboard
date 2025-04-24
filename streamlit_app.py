@@ -16,9 +16,9 @@ st.set_page_config(
 
 # 🔐 Hardcoded credentials: username, password, role
 USERS = {"admin": {"password": "admin1234", "role": "admin"},
-         "priyanka": {"password": "Ecosoul123", "role": "inventory"},
-         "mohak": {"password": "Mohak321", "role": "retail"},
-         "sumit": {"password": "Sumit123", "role": "zoho"} }
+         "Priyanka": {"password": "Ecosoul123", "role": "inventory"},
+         "Mohak": {"password": "Mohak321", "role": "retail"},
+         "Sumit": {"password": "Sumit123", "role": "zoho"} }
 
 def check_password():
     """Multi-user authentication check"""
