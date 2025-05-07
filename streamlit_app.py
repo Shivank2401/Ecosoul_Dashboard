@@ -76,6 +76,7 @@ def main_dashboard():
     inventory_data = inventory_data.loc[:, ['SKU', '3G', 'Updike','Shipcube-East', 'Shipcube-West' , 'Walmart', 'Amazon-USA', 'Amazon-Canada', 'Amazon-UAE','Amazon-UK', 'Amazon-Germany', 'Amazon-India', 'Easy Ecom', 'Flipkart']]
     
     container = pd.read_excel(base_url + "Container_Data.xlsx", sheet_name='Container SKU')
+    Stock_value = pd.read_excel(base_url + "Stock_value.xlsx", sheet_name='Sheet 1')
     
     amz_shipment = pd.read_excel(base_url + "All-Shipment_Amazon.xlsx")
     
@@ -88,16 +89,48 @@ def main_dashboard():
     
     updike_dbms = pd.read_excel(base_url + "USA-Updike_WH.xlsx", sheet_name='Updk-Inveto')
     updike_order = pd.read_excel(base_url + "USA-Updike_WH.xlsx", sheet_name='Updk-Outgoing')
-    
     # CSV file
     us_retail_overview = pd.read_csv(base_url + "retail_po_sku_data.csv")
-    
     shopify_customer = pd.read_excel(base_url + "Sales_data.xlsx")
+    
     # Main Page Logic
     if main_page == "Main":
         st.write("Welcome to the Ecosoul Home Dashboard! 🎉")
         st.write("This dashboard provides a holistic view of the business, including inventory management, retail insights, quick commerce data, and Zoho platform integration.")
         st.write("Navigate to the sidebar to explore different sections of the dashboard.")
+
+      # ---------------------- Cradle to Grave Inventory Value ------------------------
+        st.markdown("### 📈 Cradle to Grave Inventory **Value** Flow")
+        # Calculate values
+        intransit_value = Stock_value['Value_Intransit Qty'].sum()
+        warehouse_value = Stock_value['Value_Warehouse East'].sum() + Stock_value['Value_Warehouse West'].sum()
+        amazon_value = Stock_value[['Value_Amazon-USA', 'Value_Amazon-Canada', 'Value_Amazon-Germany','Value_Amazon-UK', 'Value_Amazon-UAE', 'Value_Walmart']].sum().sum()
+        
+        # Create 3 columns for flow visualization
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("🚢 Intransit", f"${intransit_value:,.0f}")
+        with col2:
+            st.metric("🏬 Warehouses", f"${warehouse_value:,.0f}")
+        with col3:
+            st.metric("🛒 Online Platforms", f"${amazon_value:,.0f}")
+        
+        # ---------------------- Cradle to Grave Inventory Quantity ------------------------
+        st.markdown("### 📦 Cradle to Grave Inventory **Quantity** Flow")
+        
+        # Calculate quantities
+        intransit_qty = Stock_value['Intransit Qty'].sum()
+        warehouse_qty = Stock_value['Warehouse East'].sum() + Stock_value['Warehouse West'].sum()
+        amazon_qty = Stock_value[[ 'Amazon-USA', 'Amazon-Canada', 'Amazon-Germany','Amazon-UK', 'Amazon-UAE', 'Walmart']].sum().sum()
+        
+        # Create 3 columns for flow visualization
+        col4, col5, col6 = st.columns(3)
+        with col4:
+            st.metric("🚢 Intransit", f"{intransit_qty:,.0f} units")
+        with col5:
+            st.metric("🏬 Warehouses", f"{warehouse_qty:,.0f} units")
+        with col6:
+            st.metric("🛒 Online Platforms", f"{amazon_qty:,.0f} units")  
         # ____________________________________________ for Inventory page _________________________________________________________________________________________________________________________ 
     elif main_page == "Inventory":
         st.header("🚛 Inventory Management")
