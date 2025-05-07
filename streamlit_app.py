@@ -76,7 +76,7 @@ def main_dashboard():
     inventory_data = inventory_data.loc[:, ['SKU', '3G', 'Updike','Shipcube-East', 'Shipcube-West' , 'Walmart', 'Amazon-USA', 'Amazon-Canada', 'Amazon-UAE','Amazon-UK', 'Amazon-Germany', 'Amazon-India', 'Easy Ecom', 'Flipkart']]
     
     container = pd.read_excel(base_url + "Container_Data.xlsx", sheet_name='Container SKU')
-    Stock_value = pd.read_excel(base_url + "Stock_value.xlsx", sheet_name='Sheet 1')
+    Stock_value = pd.read_excel(base_url + "Stock_value.xlsx", sheet_name='Sheet1')
     
     amz_shipment = pd.read_excel(base_url + "All-Shipment_Amazon.xlsx")
     
