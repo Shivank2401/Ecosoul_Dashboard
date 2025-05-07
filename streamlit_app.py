@@ -133,79 +133,79 @@ def main_dashboard():
             
             # Load the data (assuming you've already defined `Stock_value`)
             # Stock_value = pd.read_excel(base_url + "Stock_value.xlsx", sheet_name='Sheet 1')
-            
-            st.subheader("Inventory Snapshot📦")
-            
-            # --------- FILTERS ----------
-            sku_options = Stock_value['SKU'].dropna().unique()
-            material_options = Stock_value['Material'].dropna().unique()
-            product_type_options = Stock_value['Source'].dropna().unique()
-            
-            selected_sku = st.multiselect("Select SKU(s)", options=sku_options)
-            selected_material = st.multiselect("Select Material(s)", options=material_options)
-            selected_product_type = st.multiselect("Select Product Type(s)", options=product_type_options)
-            
-            # Apply filters
-            filtered_df = Stock_value.copy()
-            if selected_sku:
-                filtered_df = filtered_df[filtered_df['SKU'].isin(selected_sku)]
-            if selected_material:
-                filtered_df = filtered_df[filtered_df['Material'].isin(selected_material)]
-            if selected_product_type:
-                filtered_df = filtered_df[filtered_df['Source'].isin(selected_product_type)]
-            
-            # --------- AGGREGATED METRICS FOR CHART ----------
-            east_wh_value = filtered_df['Value_Warehouse East'].sum()
-            west_wh_value = filtered_df['Value_Warehouse West'].sum()
-            amazon_total_value = (
-                filtered_df['Value_Amazon-USA'].sum() +
-                filtered_df['Value_Amazon-Canada'].sum() +
-                filtered_df['Value_Amazon-Germany'].sum() +
-                filtered_df['Value_Amazon-UK'].sum() +
-                filtered_df['Value_Amazon-UAE'].sum() +
-                filtered_df['Value_Walmart'].sum()
-            )
-            intransit_value = filtered_df['Value_Intransit Qty'].sum()
-            
-            # --------- FLOW CHART VISUALIZATION ----------
-            fig, ax = plt.subplots(figsize=(10, 5))
-            ax.set_xlim(0, 3)
-            ax.set_ylim(0, 1)
-            ax.axis("off")
-            
-            boxes = [
-                {"label": f"🚢 Intransit Inventory\n₹{intransit_value:,.0f}", "color": "#FF8C42"},
-                {"label": f"🏬 Warehouse Arrival\nEast: ₹{east_wh_value:,.0f}\nWest: ₹{west_wh_value:,.0f}", "color": "#C1A96D"},
-                {"label": f"🛒 Online Platforms\nAmazon+Walmart: ₹{amazon_total_value:,.0f}", "color": "#1E90FF"},
-            ]
-            
-            for i, box in enumerate(boxes):
-                x = i * 1.1
-                rect = FancyBboxPatch((x, 0.4), 0.9, 0.4, boxstyle="round,pad=0.02",
-                                      edgecolor='none', facecolor=box["color"], linewidth=2)
-                ax.add_patch(rect)
-                ax.text(x + 0.45, 0.6, box["label"], ha='center', va='center', fontsize=10, color='white', wrap=True)
-            
-            # Arrows
-            arrow1 = FancyArrowPatch((0.9, 0.6), (1.1, 0.6), arrowstyle='->', mutation_scale=20, color='gray')
-            arrow2 = FancyArrowPatch((2.0, 0.6), (2.2, 0.6), arrowstyle='->', mutation_scale=20, color='gray')
-            ax.add_patch(arrow1)
-            ax.add_patch(arrow2)
-            
-            # Show flowchart
-            st.pyplot(fig)
-            
-            # --------- TABLE VIEW BELOW FLOW CHART ----------
-            st.markdown("### 📋 Filtered Inventory Table")
-            columns_to_display = [
-                'SKU', 'Material', 'Source', 'Warehouse East', 'Warehouse West',
-                'Amazon-USA', 'Amazon-Canada', 'Amazon-Germany', 'Amazon-UK', 'Amazon-UAE',
-                'Walmart', 'Amazon-India', 'Flipkart', 'Easy Ecom',
-                'Value_Intransit Qty', 'Value_Warehouse East', 'Value_Warehouse West',
-                'Value_Amazon-USA', 'Value_Amazon-Canada', 'Value_Amazon-Germany',
-                'Value_Amazon-UK', 'Value_Amazon-UAE', 'Value_Walmart'
-            ]
-            st.dataframe(filtered_df[columns_to_display])
+        
+        st.subheader("Inventory Snapshot📦")
+        
+        # --------- FILTERS ----------
+        sku_options = Stock_value['SKU'].dropna().unique()
+        material_options = Stock_value['SKU'].dropna().unique()
+        product_type_options = Stock_value['SKU'].dropna().unique()
+        
+        selected_sku = st.multiselect("Select SKU(s)", options=sku_options)
+        selected_material = st.multiselect("Select Material(s)", options=material_options)
+        selected_product_type = st.multiselect("Select Product Type(s)", options=product_type_options)
+        
+        # Apply filters
+        filtered_df = Stock_value.copy()
+        if selected_sku:
+            filtered_df = filtered_df[filtered_df['SKU'].isin(selected_sku)]
+        if selected_material:
+            filtered_df = filtered_df[filtered_df['Material'].isin(selected_material)]
+        if selected_product_type:
+            filtered_df = filtered_df[filtered_df['Source'].isin(selected_product_type)]
+        
+        # --------- AGGREGATED METRICS FOR CHART ----------
+        east_wh_value = filtered_df['Value_Warehouse East'].sum()
+        west_wh_value = filtered_df['Value_Warehouse West'].sum()
+        amazon_total_value = (
+            filtered_df['Value_Amazon-USA'].sum() +
+            filtered_df['Value_Amazon-Canada'].sum() +
+            filtered_df['Value_Amazon-Germany'].sum() +
+            filtered_df['Value_Amazon-UK'].sum() +
+            filtered_df['Value_Amazon-UAE'].sum() +
+            filtered_df['Value_Walmart'].sum()
+        )
+        intransit_value = filtered_df['Value_Intransit Qty'].sum()
+        
+        # --------- FLOW CHART VISUALIZATION ----------
+        fig, ax = plt.subplots(figsize=(10, 5))
+        ax.set_xlim(0, 3)
+        ax.set_ylim(0, 1)
+        ax.axis("off")
+        
+        boxes = [
+            {"label": f"🚢 Intransit Inventory\n₹{intransit_value:,.0f}", "color": "#FF8C42"},
+            {"label": f"🏬 Warehouse Arrival\nEast: ₹{east_wh_value:,.0f}\nWest: ₹{west_wh_value:,.0f}", "color": "#C1A96D"},
+            {"label": f"🛒 Online Platforms\nAmazon+Walmart: ₹{amazon_total_value:,.0f}", "color": "#1E90FF"},
+        ]
+        
+        for i, box in enumerate(boxes):
+            x = i * 1.1
+            rect = FancyBboxPatch((x, 0.4), 0.9, 0.4, boxstyle="round,pad=0.02",
+                                  edgecolor='none', facecolor=box["color"], linewidth=2)
+            ax.add_patch(rect)
+            ax.text(x + 0.45, 0.6, box["label"], ha='center', va='center', fontsize=10, color='white', wrap=True)
+        
+        # Arrows
+        arrow1 = FancyArrowPatch((0.9, 0.6), (1.1, 0.6), arrowstyle='->', mutation_scale=20, color='gray')
+        arrow2 = FancyArrowPatch((2.0, 0.6), (2.2, 0.6), arrowstyle='->', mutation_scale=20, color='gray')
+        ax.add_patch(arrow1)
+        ax.add_patch(arrow2)
+        
+        # Show flowchart
+        st.pyplot(fig)
+        
+        # --------- TABLE VIEW BELOW FLOW CHART ----------
+        st.markdown("### 📋 Filtered Inventory Table")
+        columns_to_display = [
+            'SKU', 'Material', 'Source', 'Warehouse East', 'Warehouse West',
+            'Amazon-USA', 'Amazon-Canada', 'Amazon-Germany', 'Amazon-UK', 'Amazon-UAE',
+            'Walmart', 'Amazon-India', 'Flipkart', 'Easy Ecom',
+            'Value_Intransit Qty', 'Value_Warehouse East', 'Value_Warehouse West',
+            'Value_Amazon-USA', 'Value_Amazon-Canada', 'Value_Amazon-Germany',
+            'Value_Amazon-UK', 'Value_Amazon-UAE', 'Value_Walmart'
+        ]
+        st.dataframe(filtered_df[columns_to_display])
 
         # ____________________________________________ for Inventory page _________________________________________________________________________________________________________________________ 
     elif main_page == "Inventory":
