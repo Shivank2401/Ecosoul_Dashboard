@@ -96,8 +96,7 @@ def main_dashboard():
     # Main Page Logic
     if main_page == "Main":
         st.write("Welcome to the Ecosoul Home Dashboard! 🎉")
-        st.write("This dashboard provides a holistic view of the business, including inventory management, retail insights, quick commerce data, and Zoho platform integration.")
-        st.write("Navigate to the sidebar to explore different sections of the dashboard.")
+        st.write("This dashboard provides a holistic view of the business, including inventory management, retail insights, quick commerce data, and Zoho platform integration." "### Navigate to the sidebar to explore different sections of the dashboard ###")
 
       # ---------------------- Cradle to Grave Inventory Value ------------------------
         st.markdown("### 📈 Cradle to Grave Inventory **Value** Flow")
@@ -113,7 +112,7 @@ def main_dashboard():
         with col2:
             st.metric("🏬 Warehouses", f"${warehouse_value:,.0f}")
         with col3:
-            st.metric("🛒 Online Platforms", f"${amazon_value:,.0f}")
+            st.metric("🛒 Channel | Platforms", f"${amazon_value:,.0f}")
         
         # ---------------------- Cradle to Grave Inventory Quantity ------------------------
         st.markdown("### 📦 Cradle to Grave Inventory **Quantity** Flow")
@@ -130,7 +129,7 @@ def main_dashboard():
         with col5:
             st.metric("🏬 Warehouses", f"{warehouse_qty:,.0f} units")
         with col6:
-            st.metric("🛒 Online Platforms", f"{amazon_qty:,.0f} units")  
+            st.metric("🛒 Channel | Platforms", f"{amazon_qty:,.0f} units")  
         # ____________________________________________ for Inventory page _________________________________________________________________________________________________________________________ 
     elif main_page == "Inventory":
         st.header("🚛 Inventory Management")
