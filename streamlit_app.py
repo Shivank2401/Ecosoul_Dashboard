@@ -52,7 +52,7 @@ def main_dashboard():
     with st.sidebar:
         # Display welcome message inside main panel
         st.success(f"Welcome, **{st.session_state.username}**! 🎉 `{st.session_state.role}`.")
-        st.markdown("## Ecosoul: A Holistic View of Business")
+        st.markdown("## Biz-Pulse: A Holistic View of Ecosoul Business")
         
         #  Sidebar navigation
         main_page = option_menu(
@@ -96,7 +96,7 @@ def main_dashboard():
     # Main Page Logic
     if main_page == "Main":
         st.write("Welcome to the Ecosoul Home Dashboard! 🎉")
-        st.write("This dashboard provides a holistic view of the business, including inventory management, retail insights, quick commerce data, and Zoho platform integration." "### Navigate to the sidebar to explore different sections of the dashboard ###")
+        #st.write("This dashboard provides a holistic view of the business, including inventory management, retail insights, quick commerce data, and Zoho platform integration." "### Navigate to the sidebar to explore different sections of the dashboard ###")
 
         st.markdown("---")
 
@@ -107,14 +107,39 @@ def main_dashboard():
         warehouse_value = Stock_value['Value_Warehouse East'].sum() + Stock_value['Value_Warehouse West'].sum()
         amazon_value = Stock_value[['Value_Amazon-USA', 'Value_Amazon-Canada', 'Value_Amazon-Germany','Value_Amazon-UK', 'Value_Amazon-UAE', 'Value_Walmart']].sum().sum()
         
-        # Create 3 columns for flow visualization
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.metric("🚢 Intransit", f"${intransit_value:,.0f}")
-        with col2:
-            st.metric("🏬 Warehouses", f"${warehouse_value:,.0f}")
-        with col3:
-            st.metric("🛒 Channel | Platforms", f"${amazon_value:,.0f}")
+        # Create value flow boxes with arrows
+        value_col1, value_col2, value_col3, value_col4, value_col5 = st.columns([2, 1, 2, 1, 2])
+
+        with value_col1:
+        st.markdown(f"""
+        <div style="background-color:#FF8C42; padding:20px; border-radius:10px; text-align:center; color:white;">
+            <h5>🚢 Intransit</h5>
+            <h4>₹ {intransit_value:,.0f}</h4>
+        </div>
+        """, unsafe_allow_html=True)
+    
+        with value_col2:
+            st.markdown("<h2 style='text-align:center;'>→</h2>", unsafe_allow_html=True)
+    
+        with value_col3:
+            st.markdown(f"""
+            <div style="background-color:#C1A96D; padding:20px; border-radius:10px; text-align:center; color:white;">
+                <h5>🏬 Warehouses</h5>
+                <h4>₹ {warehouse_value:,.0f}</h4>
+            </div>
+            """, unsafe_allow_html=True)
+    
+        with value_col4:
+            st.markdown("<h2 style='text-align:center;'>→</h2>", unsafe_allow_html=True)
+    
+        with value_col5:
+            st.markdown(f"""
+            <div style="background-color:#1E90FF; padding:20px; border-radius:10px; text-align:center; color:white;">
+                <h5>🛒 Channel | Platforms</h5>
+                <h4>₹ {amazon_value:,.0f}</h4>
+            </div>
+            """, unsafe_allow_html=True)
+    
         st.markdown("---")
         # ---------------------- Cradle to Grave Inventory Quantity ------------------------
         st.markdown("### 📦 Cradle to Grave Inventory **Quantity** Flow")
@@ -124,18 +149,38 @@ def main_dashboard():
         warehouse_qty = Stock_value['Warehouse East'].sum() + Stock_value['Warehouse West'].sum()
         amazon_qty = Stock_value[[ 'Amazon-USA', 'Amazon-Canada', 'Amazon-Germany','Amazon-UK', 'Amazon-UAE', 'Walmart']].sum().sum()
         
-        # Create 3 columns for flow visualization
-        col4, col5, col6 = st.columns(3)
-        with col4:
-            st.metric("🚢 Intransit", f"{intransit_qty:,.0f} units")
-        with col5:
-            st.metric("🏬 Warehouses", f"{warehouse_qty:,.0f} units")
-        with col6:
-            st.metric("🛒 Channel | Platforms", f"{amazon_qty:,.0f} units")  
+        # Create quantity flow boxes with arrows
+        qty_col1, qty_col2, qty_col3, qty_col4, qty_col5 = st.columns([2, 1, 2, 1, 2])
+        with qty_col1:
+            st.markdown(f""" <div style="background-color:#FF8C42; padding:20px; border-radius:10px; text-align:center; color:white;">
+                <h5>🚢 Intransit</h5>
+                <h4>{intransit_qty:,.0f} units</h4>
+            </div> """, unsafe_allow_html=True)
+        with qty_col2:
+            st.markdown("<h2 style='text-align:center;'>→</h2>", unsafe_allow_html=True)
+        
+        with qty_col3:
+            st.markdown(f"""
+            <div style="background-color:#C1A96D; padding:20px; border-radius:10px; text-align:center; color:white;">
+                <h5>🏬 Warehouses</h5>
+                <h4>{warehouse_qty:,.0f} units</h4>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        with qty_col4:
+            st.markdown("<h2 style='text-align:center;'>→</h2>", unsafe_allow_html=True)
+        
+        with qty_col5:
+            st.markdown(f"""
+            <div style="background-color:#1E90FF; padding:20px; border-radius:10px; text-align:center; color:white;">
+                <h5>🛒 Channel | Platforms</h5>
+                <h4>{amazon_qty:,.0f} units</h4>
+            </div>
+            """, unsafe_allow_html=True)
             
-            # Load the data (assuming you've already defined `Stock_value`)
-            # Stock_value = pd.read_excel(base_url + "Stock_value.xlsx", sheet_name='Sheet 1')
         st.markdown("---")
+
+        # Part 2
         st.subheader("Inventory Snapshot📦")
         
         # --------- FILTERS ----------
