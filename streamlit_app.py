@@ -111,12 +111,12 @@ def main_dashboard():
         value_col1, value_col2, value_col3, value_col4, value_col5 = st.columns([2, 1, 2, 1, 2])
 
         with value_col1:
-        st.markdown(f"""
-        <div style="background-color:#FF8C42; padding:20px; border-radius:10px; text-align:center; color:white;">
-            <h5>🚢 Intransit</h5>
-            <h4>₹ {intransit_value:,.0f}</h4>
-        </div>
-        """, unsafe_allow_html=True)
+            st.markdown(f"""
+            <div style="background-color:#FF8C42; padding:20px; border-radius:10px; text-align:center; color:white;">
+                <h5>🚢 Intransit</h5>
+                <h4>₹ {intransit_value:,.0f}</h4>
+            </div>
+            """, unsafe_allow_html=True)
     
         with value_col2:
             st.markdown("<h2 style='text-align:center;'>→</h2>", unsafe_allow_html=True)
