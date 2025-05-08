@@ -123,7 +123,7 @@ def main_dashboard():
     
         with value_col3:
             st.markdown(f"""
-            <div style="background-color:#ff9f1c; padding:20px; border-radius:10px; text-align:center; color:white;">
+            <div style="background-color:#e07a5f; padding:20px; border-radius:10px; text-align:center; color:white;">
                 <h5>🏬 Warehouses</h5>
                 <h4>$ {warehouse_value:,.0f}</h4>
             </div>
@@ -152,7 +152,7 @@ def main_dashboard():
         # Create quantity flow boxes with arrows
         qty_col1, qty_col2, qty_col3, qty_col4, qty_col5 = st.columns([2, 1, 2, 1, 2])
         with qty_col1:
-            st.markdown(f""" <div style="background-color:#FF8C42; padding:20px; border-radius:10px; text-align:center; color:white;">
+            st.markdown(f""" <div style="background-color:#2c6e49; padding:20px; border-radius:10px; text-align:center; color:white;">
                 <h5>🚢 Intransit</h5>
                 <h4>{intransit_qty:,.0f} units</h4>
             </div> """, unsafe_allow_html=True)
@@ -161,7 +161,7 @@ def main_dashboard():
         
         with qty_col3:
             st.markdown(f"""
-            <div style="background-color:#C1A96D; padding:20px; border-radius:10px; text-align:center; color:white;">
+            <div style="background-color:#e09f3e; padding:20px; border-radius:10px; text-align:center; color:white;">
                 <h5>🏬 Warehouses</h5>
                 <h4>{warehouse_qty:,.0f} units</h4>
             </div>
@@ -172,7 +172,7 @@ def main_dashboard():
         
         with qty_col5:
             st.markdown(f"""
-            <div style="background-color:#1E90FF; padding:20px; border-radius:10px; text-align:center; color:white;">
+            <div style="background-color:#31572c; padding:20px; border-radius:10px; text-align:center; color:white;">
                 <h5>🛒 Channel </h5>
                 <h4>{amazon_qty:,.0f} units</h4>
             </div>
