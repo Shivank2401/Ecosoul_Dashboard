@@ -224,12 +224,9 @@ def main_dashboard():
         intransit_value = filtered_df['Value_Intransit Qty'].sum()  
         
         # --------- TABLE VIEW BELOW FLOW CHART ----------
-        st.markdown("### 📋 Filtered Inventory Table")
+        st.markdown("### 📋 Inventory Value by SKU")
         columns_to_display = [
-            'SKU', 'Warehouse East', 'Warehouse West',
-            'Amazon-USA', 'Amazon-Canada', 'Amazon-Germany', 'Amazon-UK', 'Amazon-UAE',
-            'Walmart', 'Amazon-India', 'Flipkart', 'Easy Ecom',
-            'Value_Intransit Qty', 'Value_Warehouse East', 'Value_Warehouse West',
+            'SKU', 'Value_Intransit Qty', 'Value_Warehouse East', 'Value_Warehouse West',
             'Value_Amazon-USA', 'Value_Amazon-Canada', 'Value_Amazon-Germany',
             'Value_Amazon-UK', 'Value_Amazon-UAE', 'Value_Walmart'     ]
         st.dataframe(filtered_df[columns_to_display])
