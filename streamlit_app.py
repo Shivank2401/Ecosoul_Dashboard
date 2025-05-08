@@ -112,9 +112,9 @@ def main_dashboard():
 
         with value_col1:
             st.markdown(f"""
-            <div style="background-color:#e3d5ca; padding:20px; border-radius:10px; text-align:center; color:white;">
+            <div style="background-color:#99582a; padding:20px; border-radius:10px; text-align:center; color:white;">
                 <h5>🚢 Intransit</h5>
-                <h4>₹ {intransit_value:,.0f}</h4>
+                <h4> $ {intransit_value:,.0f}</h4>
             </div>
             """, unsafe_allow_html=True)
     
@@ -123,9 +123,9 @@ def main_dashboard():
     
         with value_col3:
             st.markdown(f"""
-            <div style="background-color:#C1A96D; padding:20px; border-radius:10px; text-align:center; color:white;">
+            <div style="background-color:#ff9f1c; padding:20px; border-radius:10px; text-align:center; color:white;">
                 <h5>🏬 Warehouses</h5>
-                <h4>₹ {warehouse_value:,.0f}</h4>
+                <h4>$ {warehouse_value:,.0f}</h4>
             </div>
             """, unsafe_allow_html=True)
     
@@ -135,8 +135,8 @@ def main_dashboard():
         with value_col5:
             st.markdown(f"""
             <div style="background-color:#006d77; padding:20px; border-radius:10px; text-align:center; color:white;">
-                <h5>🛒 Channel | Platforms</h5>
-                <h4>₹ {amazon_value:,.0f}</h4>
+                <h5>🛒 Channel </h5>
+                <h4>$ {amazon_value:,.0f}</h4>
             </div>
             """, unsafe_allow_html=True)
     
@@ -173,7 +173,7 @@ def main_dashboard():
         with qty_col5:
             st.markdown(f"""
             <div style="background-color:#1E90FF; padding:20px; border-radius:10px; text-align:center; color:white;">
-                <h5>🛒 Channel | Platforms</h5>
+                <h5>🛒 Channel </h5>
                 <h4>{amazon_qty:,.0f} units</h4>
             </div>
             """, unsafe_allow_html=True)
