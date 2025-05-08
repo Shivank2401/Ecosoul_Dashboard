@@ -112,7 +112,7 @@ def main_dashboard():
 
         with value_col1:
             st.markdown(f"""
-            <div style="background-color:#FF8C42; padding:20px; border-radius:10px; text-align:center; color:white;">
+            <div style="background-color:#e3d5ca; padding:20px; border-radius:10px; text-align:center; color:white;">
                 <h5>🚢 Intransit</h5>
                 <h4>₹ {intransit_value:,.0f}</h4>
             </div>
@@ -134,7 +134,7 @@ def main_dashboard():
     
         with value_col5:
             st.markdown(f"""
-            <div style="background-color:#1E90FF; padding:20px; border-radius:10px; text-align:center; color:white;">
+            <div style="background-color:#006d77; padding:20px; border-radius:10px; text-align:center; color:white;">
                 <h5>🛒 Channel | Platforms</h5>
                 <h4>₹ {amazon_value:,.0f}</h4>
             </div>
